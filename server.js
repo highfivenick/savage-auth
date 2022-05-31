@@ -2,22 +2,24 @@
 
 // set up ======================================================================
 // get all the tools we need
-var express  = require('express');
-var app      = express();
-var port     = process.env.PORT || 8080;
-const MongoClient = require('mongodb').MongoClient
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash    = require('connect-flash');
+const express  = require('express');
+let app      = express();
+let port     = process.env.PORT || 8080;
+// const MongoClient = require('mongodb').MongoClient
+const mongoose = require('mongoose');
+mongoose.set('useNewUrlParser', true)
+mongoose.set('useUnifiedTopology', true)
+const passport = require('passport');
+const flash    = require('connect-flash');
 
-var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+const morgan       = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser   = require('body-parser');
+const session      = require('express-session');
 
-var configDB = require('./config/database.js');
+const configDB = require('./config/database.js');
 
-var db
+let db
 
 // configuration ===============================================================
 mongoose.connect(configDB.url, (err, database) => {
@@ -40,7 +42,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 app.use(session({
-    secret: 'rcbootcamp2021b', // session secret
+    secret: 'rcbootcamp2022a', // session secret
     resave: true,
     saveUninitialized: true
 }));
